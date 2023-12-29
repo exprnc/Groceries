@@ -17,13 +17,25 @@ fun main() {
         Grocery("Ice cream", "Frozen", "Pack", 3.0, 2)
     )
 
-    val highestUnitPrice = groceries.maxBy { it.unitPrice * 5 }
-    println("highestUnitPrice: $highestUnitPrice")
-    val lowestQuantity = groceries.minBy { it.quantity }
-    println("lowestQuantity: $lowestQuantity")
+    val vegetables = groceries.filter { it.category == "Vegetable" }
+    println("vegetables: $vegetables")
+    val notFrozen = groceries.filterNot { it.category == "Frozen" }
+    println("notFrozen: $notFrozen")
 
-    val sumQuantity = groceries.sumBy { it.quantity }
-    println("sumQuantity: $sumQuantity")
-    val totalPrice = groceries.sumByDouble { it.quantity * it.unitPrice }
-    println("totalPrice: $totalPrice")
+    val groceryNames = groceries.map { it.name }
+    println("groceryNames: $groceryNames")
+    val halfUnitPrice = groceries.map { it.unitPrice * 0.5 }
+    println("halfUnitPrice: $halfUnitPrice")
+
+    val newPrices = groceries.filter { it.unitPrice > 3.0 }.map { it.unitPrice * 2 }
+    println("newPrices: $newPrices")
+    println("Grocery names: ")
+    groceries.forEach { println(it.name) }
+
+    println("Groceries with unitPrice > 3.0: ")
+    groceries.filter { it.unitPrice > 3.0 }.forEach { println(it.name) }
+
+    var itemNames = ""
+    groceries.forEach { itemNames += it.name }
+    println("itemNames: $itemNames")
 }
